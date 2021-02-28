@@ -48,3 +48,13 @@ Just run one of the following commands to start the application:
 This web application was deployed on the Vercel platform and you can access it through this link:
 
 https://moveit-rouge-nine.vercel.app/
+
+## TODO
+
+- [ ] Add css media queries
+- [ ] Add PWA functionality
+- [ ] Add application images (How does the application look like?)
+- [ ] Add dark theme
+- [ ] Add github integration
+- [ ] Add a new page listing all github users by rating
+- [ ] Share on Twitter
