@@ -1,62 +1,33 @@
-import Head from 'next/head';
-import { GetServerSideProps } from 'next';
-
-import { ChallengesProvider } from '../contexts/ChallengesContext';
-import { CountdownProvider } from '../contexts/CountdownContext';
-
-import { Countdown } from '../components/Countdown';
-import { ExperienceBar } from '../components/ExperienceBar';
-import { Profile } from '../components/Profile';
-import { ChallengeBox } from '../components/ChallengeBox';
-import { CompleteChallenges } from '../components/CompleteChallenges';
+import { useRouter } from 'next/router'
+import { signIn, useSession } from 'next-auth/client';
 
 import styles from '../styles/pages/Home.module.css';
 
-interface HomeProps {
-  level: number;
-  currentExperience: number;
-  challengesCompleted: number;
-}
+export default function Home() {
+  const [session] = useSession();
+  const router = useRouter();
 
-export default function Home(props: HomeProps) {
-   return (
-    <ChallengesProvider
-      level={props.level}
-      currentExperience={props.currentExperience}
-      challengesCompleted={props.challengesCompleted}
-    >
-      <div className={styles.container}>
-        <Head>
-          <title>Início | Moveit</title>
-        </Head>
-
-        <ExperienceBar />
-
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompleteChallenges />
-              <Countdown />
-            </div>
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
-      </div>
-    </ChallengesProvider>
-  );
-}
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { level, currentExperience, challengesCompleted } = ctx.req.cookies;
-
-  return {
-    props: {
-      level: Number(level),
-      currentExperience: Number(currentExperience),
-      challengesCompleted: Number(challengesCompleted)
-    }
+  if (session) {
+    router.push('/dashboard');
   }
+
+  return (
+    <div className={styles.container}>
+      <div className={styles.loginContainer}>
+        <img src="logo-full.svg" alt="Logo" />
+        <h1>Bem-vindo</h1>
+        <div>
+          <img src="icons/github.svg" alt="Github" />
+          <span>Faça login com seu Github para começar</span>
+        </div>
+        <button
+          type="submit"
+          onClick={() => signIn(null, { callbackUrl: 'http://localhost:3000/dashboard' })}
+        >
+          Entre com seu github
+          <img src="icons/arrow-right.svg" alt="Arrow" />
+        </button>
+      </div>
+    </div>
+  );
 }
