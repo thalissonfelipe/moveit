@@ -58,6 +58,10 @@ https://moveit-rouge-nine.vercel.app/
 
 You can see the application images on images folder.
 
+![Login](images/login-desktop.jpeg)
+![Dashboard](images/dashboard-desktop.jpeg)
+![Leaderboard](images/leaderboard-desktop.jpeg)
+
 ## TODO
 
 - [x] Add css media queries
