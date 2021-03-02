@@ -1,5 +1,7 @@
 import { createContext, ReactNode, useState, useEffect } from 'react';
+import { useSession } from 'next-auth/client';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 import { LevelUpModal } from '../components/LevelUpModal';
 
@@ -39,6 +41,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
   const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
   const [activeChallenge, setActiveChallenge] = useState(null);
   const [isLevelUpModalOpen, setIsLevelUpModalOpen] = useState(false);
+  const [session] = useSession();
 
   const experienceToNextLevel = Math.pow((level + 1) * 4, 2);
 
@@ -80,7 +83,7 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     setActiveChallenge(null);
   }
 
-  function completeChallenge() {
+  async function completeChallenge() {
     if (!activeChallenge) {
       return;
     }
@@ -96,6 +99,15 @@ export function ChallengesProvider({ children, ...rest }: ChallengesProviderProp
     setCurrentExperience(finalExperience);
     setActiveChallenge(null);
     setChallengesCompleted(challengesCompleted + 1);
+
+    await axios.post('/api/users', {
+      name: session.user.name,
+      email: session.user.email,
+      avatarUrl: session.user.image,
+      level,
+      challengesCompleted,
+      experience: Math.pow(level * 4, 2) + finalExperience
+    });
   }
 
   return (

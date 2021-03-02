@@ -56,5 +56,5 @@ https://moveit-rouge-nine.vercel.app/
 - [x] Add application images (How does the application look like?)
 - [ ] Add dark theme
 - [x] Add github integration
-- [ ] Add a new page listing all github users by rating
+- [x] Add a new page listing all github users by rating
 - [ ] Share level up on Twitter

@@ -1,5 +1,6 @@
+import axios from 'axios';
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/client';
 
@@ -7,21 +8,32 @@ import { Sidebar } from '../components/Sidebar';
 
 import styles from '../styles/pages/Leaderboard.module.css';
 
-export default function Leaderboard() {
-  const mockData = Array(10).fill({
-    name: 'Thalisson Felipe',
-    avatar_url: 'https://avatars.githubusercontent.com/u/29899637?v=4',
-    challengesCompleteds: 127,
-    experience: 174000,
-    level: 43
-  });
+interface User {
+  name: string;
+  email: string;
+  avatarUrl: string;
+  level: number;
+  challengesCompleted: number;
+  experience: number;
+}
 
+export default function Leaderboard() {
+  const [users, setUsers] = useState<User[]>([]);
   const [session, loading] = useSession();
   const router = useRouter();
 
   if (!session && !loading) {
     router.push('/');
   }
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const { data } = await axios.get('/api/users');
+      setUsers(data.users);
+    }
+
+    fetchUsers();
+  }, []);
 
   useEffect(() => {
     if (!session && !loading) {
@@ -47,11 +59,11 @@ export default function Leaderboard() {
               <span>Desafios</span>
               <span>Experiência</span>
             </div>
-            {mockData.map((user, index) => (
+            {users.map((user, index) => (
               <div className={styles.tableItem} key={index}>
                 <span>{index+1}</span>
                 <div>
-                  <img src={user.avatar_url} alt="Avatar"/>
+                  <img src={user.avatarUrl} alt="Avatar"/>
                   <div>
                     <h2>{user.name}</h2>
                     <span>
@@ -59,7 +71,7 @@ export default function Leaderboard() {
                     </span>
                   </div>
                 </div>
-                <p><span>{user.challengesCompleteds}</span> completados</p>
+                <p><span>{user.challengesCompleted}</span> completados</p>
                 <p><span>{user.experience}</span> xp</p>
               </div>
             ))}
