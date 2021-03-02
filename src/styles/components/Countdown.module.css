@@ -58,6 +58,20 @@
 .countdownButtonActive {
     background-color: var(--white);
     color: var(--title);
+    position: relative;
+}
+
+.countdownButtonActive svg {
+    margin-left: 1rem;
+}
+
+.countdownButtonActive div {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    background-color: var(--green);
+    border-radius: 0 0 5px 5px;
 }
 
 .countdownButtonActive:not(:disabled):hover {

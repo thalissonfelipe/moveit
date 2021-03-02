@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { CountdownContext } from '../contexts/CountdownContext';
 
@@ -18,6 +18,8 @@ export function Countdown() {
 
   const [minuteLeft, minuteRight] = String(minutes).padStart(2, '0').split('');
   const [secondLeft, secondRight] = String(seconds).padStart(2, '0').split('');
+
+  const percent = 100 - ((minutes * 60 + seconds) * 100) / (25 * 60);
 
   return (
     <div>
@@ -50,6 +52,8 @@ export function Countdown() {
               onClick={resetCountdown}
             >
               Abandonar ciclo
+              <FontAwesomeIcon icon={faTimes} />
+              <div style={{ width: `${percent}%` }}></div>
             </button>
           ) : (
             <button
