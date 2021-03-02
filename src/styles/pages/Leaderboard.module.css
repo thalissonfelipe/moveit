@@ -1,0 +1,150 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 0 2rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.container header h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: var(--title);
+}
+
+.tableContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.tableContainer div {
+    display: grid;
+    grid-template-columns: 1fr 6fr 2fr 2fr;
+    grid-template-rows: auto;
+}
+
+.tableContainer div:not(:first-child) {
+    height: 6rem;
+}
+
+.tableHeader {
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.tableHeader span {
+    font-size: .875rem;
+    font-weight: 700;
+    color: var(--text);
+    text-transform: uppercase;
+}
+
+.tableItem {
+    margin-bottom: .5rem;
+}
+
+.tableItem:last-child {
+    margin-bottom: 1.5rem;
+}
+
+.tableItem > span {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text);
+    padding: 2.125rem 1.875rem;
+    background-color: var(--white);
+}
+
+.tableItem > div {
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    margin-left: 4px;
+    padding-left: 1.5rem;
+}
+
+.tableItem > div > img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.tableItem > div > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.tableItem > div > div > h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--title);
+    margin-bottom: .4375rem;
+}
+
+.tableItem > div > div > span {
+    font-size: 1.rem;
+    font-weight: 400;
+    color: var(--text);
+}
+
+.tableItem > div > div > span img {
+    margin-right: .5625rem;
+}
+
+.tableItem p {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    background-color: var(--white);
+}
+
+.tableItem p span {
+    color: var(--blue);
+    margin-right: 5px;
+}
+
+@media (max-width: 1280px) {
+    .tableContainer div {
+        grid-template-columns: 1fr 4fr 2fr 2fr;
+    }
+
+    .container {
+        padding: 1rem 1rem 0;
+    }
+}
+
+@media (max-width: 580px) {
+    .tableContainer div {
+        grid-template-columns: 1fr 2fr 1fr 1fr;
+    }
+
+    .tableItem > div > img {
+        display: none;
+    }
+
+    .tableItem > div > div > h2 {
+        font-size: 1rem;
+    }
+
+    .tableItem p {
+        overflow: hidden;
+    }
+
+    .tableItem p span {
+        margin-right: 100%;
+    }
+
+    .tableHeader span {
+        font-size: .7rem;
+    }
+}

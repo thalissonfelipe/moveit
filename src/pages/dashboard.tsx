@@ -42,15 +42,13 @@ export default function Dashboard(props: DashboardProps) {
       currentExperience={props.currentExperience}
       challengesCompleted={props.challengesCompleted}
     >
-      <div className={styles.gridContainer}>
-        <Sidebar />
+      <Head>
+        <title>Início | Moveit</title>
+      </Head>
+      <Sidebar />
+      <div className={styles.wrapper}>
         <div className={styles.container}>
-          <Head>
-            <title>Início | Moveit</title>
-          </Head>
-
           <ExperienceBar />
-
           <CountdownProvider>
             <section>
               <div>
