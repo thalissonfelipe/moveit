@@ -12,6 +12,10 @@ The application has the following features:
 - A modal saying that you level up.
 - The level, current experience and number of challenges completed are saved in the cookies.
 - Use of useState and useEffect hooks and the Context API.
+- Login with Github OAuth.
+- A Leaderboard page ranked by user experience.
+- Nextjs API Routes.
+- User data persistence.
 
 ## Libraries and tools used
 
@@ -21,6 +25,7 @@ The application has the following features:
 - [Typescript](https://www.typescriptlang.org/)
 - [js-cookie](https://github.com/js-cookie/js-cookie)
 - [Vercel](https://vercel.com/)
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
 
 ## How to install dependencies
 
@@ -48,6 +53,10 @@ Just run one of the following commands to start the application:
 This web application was deployed on the Vercel platform and you can access it through this link:
 
 https://moveit-rouge-nine.vercel.app/
+
+## Application Images
+
+You can see the application images on images folder.
 
 ## TODO
 
