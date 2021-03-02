@@ -27,7 +27,9 @@ export default function Home() {
           </div>
           <button
             type="submit"
-            onClick={() => signIn(null, { callbackUrl: 'http://localhost:3000/dashboard' })}
+            onClick={() => signIn(null, {
+              callbackUrl: `${process.env.NEXTAUTH_URL}/dashboard` || 'http://localhost:3000/dashboard'
+            })}
           >
             Entre com seu github
             <img src="icons/arrow-right.svg" alt="Arrow" />
