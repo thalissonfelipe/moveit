@@ -1,4 +1,6 @@
 import { useContext } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { CountdownContext } from '../contexts/CountdownContext';
 
@@ -37,7 +39,7 @@ export function Countdown() {
         className={styles.countdownButton}
       >
         Ciclo encerrado
-        <img src="icons/ok.png" alt="Ciclo encerrado" />
+        <FontAwesomeIcon icon={faCheckCircle} />
       </button>
       ) : (
         <>

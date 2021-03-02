@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import { useSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
 
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 import { CountdownProvider } from '../contexts/CountdownContext';
@@ -10,6 +11,7 @@ import { ExperienceBar } from '../components/ExperienceBar';
 import { Profile } from '../components/Profile';
 import { ChallengeBox } from '../components/ChallengeBox';
 import { CompleteChallenges } from '../components/CompleteChallenges';
+import { Sidebar } from '../components/Sidebar';
 
 import styles from '../styles/pages/Dashboard.module.css';
 
@@ -21,6 +23,11 @@ interface DashboardProps {
 
 export default function Dashboard(props: DashboardProps) {
   const [session, loading] = useSession();
+  const router = useRouter();
+
+  if (!session && !loading) {
+    router.push('/');
+  }
 
   return session ? (
     <ChallengesProvider
@@ -28,6 +35,7 @@ export default function Dashboard(props: DashboardProps) {
       currentExperience={props.currentExperience}
       challengesCompleted={props.challengesCompleted}
     >
+      <Sidebar />
       <div className={styles.container}>
         <Head>
           <title>Início | Moveit</title>

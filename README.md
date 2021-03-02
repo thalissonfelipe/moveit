@@ -55,6 +55,6 @@ https://moveit-rouge-nine.vercel.app/
 - [ ] Add PWA functionality
 - [ ] Add application images (How does the application look like?)
 - [ ] Add dark theme
-- [ ] Add github integration
+- [x] Add github integration
 - [ ] Add a new page listing all github users by rating
 - [ ] Share on Twitter
