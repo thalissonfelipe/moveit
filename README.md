@@ -51,7 +51,7 @@ https://moveit-rouge-nine.vercel.app/
 
 ## TODO
 
-- [ ] Add css media queries
+- [x] Add css media queries
 - [ ] Add PWA functionality
 - [ ] Add application images (How does the application look like?)
 - [ ] Add dark theme

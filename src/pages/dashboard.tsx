@@ -35,26 +35,28 @@ export default function Dashboard(props: DashboardProps) {
       currentExperience={props.currentExperience}
       challengesCompleted={props.challengesCompleted}
     >
-      <Sidebar />
-      <div className={styles.container}>
-        <Head>
-          <title>Início | Moveit</title>
-        </Head>
+      <div className={styles.gridContainer}>
+        <Sidebar />
+        <div className={styles.container}>
+          <Head>
+            <title>Início | Moveit</title>
+          </Head>
 
-        <ExperienceBar />
+          <ExperienceBar />
 
-        <CountdownProvider>
-          <section>
-            <div>
-              <Profile />
-              <CompleteChallenges />
-              <Countdown />
-            </div>
-            <div>
-              <ChallengeBox />
-            </div>
-          </section>
-        </CountdownProvider>
+          <CountdownProvider>
+            <section>
+              <div>
+                <Profile />
+                <CompleteChallenges />
+                <Countdown />
+              </div>
+              <div>
+                <ChallengeBox />
+              </div>
+            </section>
+          </CountdownProvider>
+        </div>
       </div>
     </ChallengesProvider>
   ) : '';

@@ -78,3 +78,9 @@
     margin-left: 1rem;
     color: var(--green);
 }
+
+@media(max-width: 720px) {
+    .countdownContainer > div {
+        font-size: 6rem;
+    }
+}
