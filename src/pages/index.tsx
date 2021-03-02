@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router'
 import { signIn, useSession } from 'next-auth/client';
 
@@ -8,9 +9,11 @@ export default function Home() {
   const [session] = useSession();
   const router = useRouter();
 
-  if (session) {
-    router.push('/dashboard');
-  }
+  useEffect(() => {
+    if (session) {
+      router.push('/dashboard');
+    }
+  }, [session]);
 
   return (
     <>
@@ -27,9 +30,7 @@ export default function Home() {
           </div>
           <button
             type="submit"
-            onClick={() => signIn(null, {
-              callbackUrl: `${process.env.NEXTAUTH_URL}/dashboard` || 'http://localhost:3000/dashboard'
-            })}
+            onClick={() => signIn()}
           >
             Entre com seu github
             <img src="icons/arrow-right.svg" alt="Arrow" />

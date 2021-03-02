@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import { useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import { ChallengesProvider } from '../contexts/ChallengesContext';
 import { CountdownProvider } from '../contexts/CountdownContext';
@@ -28,6 +29,12 @@ export default function Dashboard(props: DashboardProps) {
   if (!session && !loading) {
     router.push('/');
   }
+
+  useEffect(() => {
+    if (!session && !loading) {
+      router.push('/');
+    }
+  }, [session]);
 
   return session ? (
     <ChallengesProvider
